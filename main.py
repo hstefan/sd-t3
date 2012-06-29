@@ -1,6 +1,7 @@
 import sys
 from argparse import ArgumentParser
 from twitter_api_wrapper import get_twitter_id, get_tweets
+from directions_api_wrapper import get_directions
 
 def setup_arguments():
     parser = ArgumentParser(description='Provides you with an automated stalking tool!')
@@ -42,5 +43,8 @@ def main():
         except IndexError:
             print('Indice invalido.')
     
+    coordinates = tweet_selected[1]['coordinates']
+    user_adress = input('Endereco de origem: ')
+    print(get_directions(user_adress, coordinates))
 if __name__ == '__main__':
     main()
