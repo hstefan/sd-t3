@@ -1,3 +1,4 @@
+import sys
 from argparse import ArgumentParser
 from twitter_api_wrapper import get_twitter_id, get_tweets
 
@@ -10,7 +11,10 @@ def setup_arguments():
 def display_tweets(tweets_json):
     i = 1
     for tweet in tweets_json:
-        print('(' + str(i) + ') ' + tweet['text'])
+        message = '(' + str(i) + ') ' + tweet['text'] + '\n'
+        # Prevent a failed encode from blowing up the program
+        # This is just output after all.
+        sys.stdout.buffer.write(message.encode(sys.stdout.encoding, 'replace'))
         i = i + 1
 
 def main():
