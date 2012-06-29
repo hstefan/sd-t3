@@ -7,12 +7,17 @@ def setup_arguments():
 		help='The stalking target user!')
 	return parser
 	
+def display_tweets(tweets_json):
+	i = '0'
+	for tweet in tweets_json:
+		print('(' + str(i) + ') ' + tweet['text'])
+	
 def main():
 	parser = setup_arguments()
 	args = parser.parse_args()	
 	user_str = args.user
 	id = get_twitter_id(user_str)
-	print(get_tweets(id, 10))
+	display_tweets(get_tweets(id, 10))
 	
 if __name__ == '__main__':
 	main()
