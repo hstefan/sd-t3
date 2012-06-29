@@ -1,24 +1,22 @@
-from util import response_to_json
-from urllib.parse import urlencode
-from urllib.request import HTTPError
+import requests
 
 class DirectionsError(Exception):
     pass
-    
-def get_directions_json(origin, dest, travel_mode='driving', sensor=False):
-    directions_api_url = "http://maps.googleapis.com/maps/api/directions/json?"
-    language = 'pt-BR'
-    
-    request_url = directions_api_url + urlencode({'origin' : origin, 
-        'mode' : travel_mode, 'sensor' : 'true' if sensor == True else 'false',
-        'language' : language})
-    request_url = request_url + '&destination=' + str(dest[0]) + ',' + str(dest[1]) #workaround for comma separated coordinates
 
-    try:
-        dir = response_to_json(request_url)
-        return dir
-    except HTTPError as e:
-        if e.code == 404:
-            raise DirectionsError('Direcoes nao encontradas.') from e
-        else:
-            raise
+def get_directions_json(origin, dest, travel_mode='driving', sensor=False, language='pt-BR'):
+    request_params = {
+            'origin': origin,
+            'mode': travel_mode,
+            'sensor': 'true' if sensor else 'false',
+            'language': language,
+            'destination': ','.join(map(str, dest))
+            }
+
+    req = requests.get("http://maps.googleapis.com/maps/api/directions/json", params=request_params)
+
+    if req.status_code == 200:
+        return req.json
+    elif req.status_code == 404:
+        raise DirectionsError("Instruções não encontradas.")
+    else:
+        req.raise_for_status()
