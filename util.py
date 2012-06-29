@@ -19,3 +19,13 @@ def better_print(message):
     """ Little workaround for using unicode characters on Windows. """
     message_n = message + '\n'
     sys.stdout.buffer.write(message_n.encode(sys.stdout.encoding, 'replace'))
+    
+def list_tweets_with_location(tweets_json):
+    with_location = []
+    for i, tweet in enumerate(tweets_json):
+        geo_enabled = tweet['user']['geo_enabled']
+        coordinates = tweet['coordinates']
+        if geo_enabled and  coordinates:
+            with_location.append((tweet['text'], coordinates))
+    return with_location
+    
