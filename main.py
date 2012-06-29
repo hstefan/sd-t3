@@ -3,7 +3,7 @@ from twitter_api_wrapper import get_twitter_id, get_tweets
 
 def setup_arguments():
 	parser = ArgumentParser(description='Provides you a automated stalking tool!')
-	parser.add_argument('-u', '--user', dest = 'user', metavar='USER', type=str, 
+	parser.add_argument('-u', '--user', dest='user', metavar='USER', type=str, required=True,
 		help='The stalking target user!')
 	return parser
 	
