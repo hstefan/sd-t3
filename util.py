@@ -17,7 +17,7 @@ def response_to_json(url, enc='utf-8'):
     return json_output
 
 def build_arg_string(args, sep='&'):
-	arg_str = ''
-	for k, v in args.items():
-		arg_str = arg_str + k + '=' + 'v' + sep
-	return arg_str
+    arg_str = ''
+    for k, v in args.items():
+        arg_str = arg_str + k + '=' + 'v' + sep
+    return arg_str
