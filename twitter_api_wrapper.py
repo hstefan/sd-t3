@@ -1,4 +1,5 @@
 import json
+from urllib.request import HTTPError
 from urllib.parse import urlencode
 from util import response_to_json
 
@@ -10,12 +11,17 @@ def get_twitter_id(username):
     raises TwitterError."""
 
     twitter_api_url = "https://api.twitter.com/1/users/show.json?"
-    json_output = response_to_json(twitter_api_url + urlencode({'screen_name': username}))
+    request_url = twitter_api_url + urlencode({'screen_name': username})
 
-    if json_output is None:
-        raise TwitterError("User not found: '{0}'".format(username))
-    else:
-        return json_output['id']
+    try:
+        json_output = response_to_json(request_url)
+    except HTTPError as e:
+        if e.code == 404:
+            raise TwitterError("User not found: '{0}'".format(username)) from e
+        else:
+            raise
+
+    return json_output['id']
 
 def get_tweets(user_id, n=10):
     """Returns a list of at most n tweets for user id user_id."""

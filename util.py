@@ -1,19 +1,12 @@
-from urllib.request import urlopen, HTTPError
+from urllib.request import urlopen
 import json
 
 def response_to_json(url, enc='utf-8'):
-    """Connects to the URL in url and returns the response parsed as json. If
-    the request results in a 404 'Not Found' error then None is returned.
+    """Connects to the URL in url and returns the response parsed as json.
 
     This is useful for retrieving data from RESTful services."""
 
-    try:
-        response = urlopen(url)
-    except HTTPError as e:
-        if e.code == 404:
-            return None
-        else:
-            raise
+    response = urlopen(url)
 
     raw_data = response.read()
     # TODO Determine proper encoding from HTTP headers
