@@ -9,13 +9,11 @@ def setup_arguments():
     return parser
 
 def display_tweets(tweets_json):
-    i = 1
-    for tweet in tweets_json:
-        message = '(' + str(i) + ') ' + tweet['text'] + '\n'
+    for i, tweet in enumerate(tweets_json):
+        message = '(' + str(i+1) + ') ' + tweet['text'] + '\n'
         # Prevent a failed encode from blowing up the program
         # This is just output after all.
         sys.stdout.buffer.write(message.encode(sys.stdout.encoding, 'replace'))
-        i = i + 1
 
 def main():
     parser = setup_arguments()
