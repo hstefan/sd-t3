@@ -29,7 +29,12 @@ def list_tweets_with_location(tweets_json):
         if geo_enabled and  coordinates:
             with_location.append((tweet['text'], coordinates))
     return with_location
-    
+
+def tweet_has_location(tweet):
+    geo_enabled = tweet['user']['geo_enabled']
+    coordinates = tweet['coordinates']
+    return geo_enabled and coordinates
+
 def get_directions_list(directions_json):
     dir_info = {}
     route = directions_json['routes'][0]

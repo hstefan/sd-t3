@@ -1,6 +1,6 @@
 from PyQt4 import QtCore, QtGui
 from app_gui import Ui_MainWindow
-from util import list_tweets_with_location, get_directions_list
+from util import tweet_has_location, list_tweets_with_location, get_directions_list
 from twitter_api_wrapper import TwitterError, get_twitter_id, get_tweets
 from directions_api_wrapper import get_directions_json
 
@@ -25,14 +25,14 @@ class Gui_Wrapper(QtGui.QMainWindow):
                 QtGui.QMessageBox.critical(self, "Twitter Error", str(e))
                 return
 
-            self.tweet_list = list_tweets_with_location(all_tweets)
+            self.tweet_list = [(tweet['text'], tweet['coordinates']) for tweet in all_tweets if tweet_has_location(tweet)]
             self.ui.lv_tweets.clear()
             for tweet, coord in self.tweet_list:
                 self.ui.lv_tweets.addItem(tweet)
-                
+
     def get_route_callback(self):
         selected_index = self.ui.lv_tweets.indexFromItem(self.ui.lv_tweets.selectedItems()[0]).row()
-        print(selected_index)
+
         if len(self.ui.le_address.text()) > 0 and self.tweet_list:
             coord = self.tweet_list[selected_index][1]['coordinates'][:]
             coord.reverse()
