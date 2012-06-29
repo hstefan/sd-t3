@@ -24,5 +24,4 @@ def get_tweets(user_id, n=10):
 
     api_timeline_url = 'https://api.twitter.com/1/statuses/user_timeline.json?' + arg_str
     json_output = response_to_json(api_timeline_url)
-
     return json_output

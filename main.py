@@ -8,9 +8,10 @@ def setup_arguments():
     return parser
 
 def display_tweets(tweets_json):
-    i = '0'
+    i = 1
     for tweet in tweets_json:
         print('(' + str(i) + ') ' + tweet['text'])
+        i = i + 1
 
 def main():
     parser = setup_arguments()
