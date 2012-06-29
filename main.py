@@ -14,9 +14,11 @@ def display_tweets(tweets_json):
 
 def main():
     parser = setup_arguments()
-    args = parser.parse_args()	
+    args = parser.parse_args()
+
     user_str = args.user
     id = get_twitter_id(user_str)
+
     display_tweets(get_tweets(id, 10))
 
 if __name__ == '__main__':
