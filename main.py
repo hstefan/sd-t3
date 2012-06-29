@@ -45,6 +45,7 @@ def main():
     
     coordinates = tweet_selected[1]['coordinates']
     user_adress = input('Endereco de origem: ')
-    print(get_directions(user_adress, coordinates))
+    coordinates.reverse() #maps API receives coordinates(lat, long), while twitter api retrieves (long,lat)
+    directions_json = get_directions(user_adress, coordinates)
 if __name__ == '__main__':
     main()

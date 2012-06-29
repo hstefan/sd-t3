@@ -9,7 +9,10 @@ def get_directions(origin, dest, travel_mode='driving', sensor=False):
     language = 'pt-BR'
     
     request_url = directions_api_url + urlencode({'origin' : origin, 
-        'destination' : dest, 'mode' : travel_mode, 'sensor' : 'true' if sensor == True else 'false'})
+        'mode' : travel_mode, 'sensor' : 'true' if sensor == True else 'false',
+        'language' : language})
+    request_url = request_url + '&destination=' + str(dest[0]) + ',' + str(dest[1]) #workaround for comma separated coordinates
+
     try:
         dir = response_to_json(request_url)
         return dir
