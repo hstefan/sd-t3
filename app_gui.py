@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'app_gui.ui'
 #
-# Created: Fri Jun 29 06:57:40 2012
+# Created: Fri Jun 29 07:53:37 2012
 #      by: PyQt4 UI code generator 4.9.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -48,10 +48,9 @@ class Ui_MainWindow(object):
         self.bt_route = QtGui.QPushButton(self.horizontalLayoutWidget)
         self.bt_route.setObjectName(_fromUtf8("bt_route"))
         self.horizontalLayout_2.addWidget(self.bt_route)
-        self.wv_instructions = QtWebKit.QWebView(self.centralwidget)
-        self.wv_instructions.setGeometry(QtCore.QRect(10, 260, 571, 200))
-        self.wv_instructions.setUrl(QtCore.QUrl(_fromUtf8("about:blank")))
-        self.wv_instructions.setObjectName(_fromUtf8("wv_instructions"))
+        self.lv_directions = QtGui.QListWidget(self.centralwidget)
+        self.lv_directions.setGeometry(QtCore.QRect(10, 260, 571, 192))
+        self.lv_directions.setObjectName(_fromUtf8("lv_directions"))
         self.widget = QtGui.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(10, 10, 571, 25))
         self.widget.setObjectName(_fromUtf8("widget"))
@@ -98,4 +97,3 @@ class Ui_MainWindow(object):
         self.label_2.setText(QtGui.QApplication.translate("MainWindow", "Tweets number", None, QtGui.QApplication.UnicodeUTF8))
         self.bt_search.setText(QtGui.QApplication.translate("MainWindow", "Search", None, QtGui.QApplication.UnicodeUTF8))
 
-from PyQt4 import QtWebKit

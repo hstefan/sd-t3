@@ -84,19 +84,14 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWebView" name="wv_instructions">
+   <widget class="QListWidget" name="lv_directions">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>260</y>
       <width>571</width>
-      <height>200</height>
+      <height>192</height>
      </rect>
-    </property>
-    <property name="url">
-     <url>
-      <string>about:blank</string>
-     </url>
     </property>
    </widget>
    <widget class="QWidget" name="">
@@ -151,13 +146,6 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QWebView</class>
-   <extends>QWidget</extends>
-   <header>QtWebKit/QWebView</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

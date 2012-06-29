@@ -1,10 +1,11 @@
 from util import response_to_json
 from urllib.parse import urlencode
+from urllib.request import HTTPError
 
 class DirectionsError(Exception):
     pass
     
-def get_directions(origin, dest, travel_mode='driving', sensor=False):
+def get_directions_json(origin, dest, travel_mode='driving', sensor=False):
     directions_api_url = "http://maps.googleapis.com/maps/api/directions/json?"
     language = 'pt-BR'
     

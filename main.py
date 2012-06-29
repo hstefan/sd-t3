@@ -2,7 +2,7 @@ import sys
 import re
 from argparse import ArgumentParser
 from twitter_api_wrapper import get_twitter_id, get_tweets
-from directions_api_wrapper import get_directions
+from directions_api_wrapper import get_directions_json
 from util import better_print
 from gui_wrapper import Gui_Wrapper
 from PyQt4 import QtGui
@@ -35,7 +35,7 @@ def main_cli():
     elif args.travel_mode == 4:  
         travel_mode_str = 'transit'
     
-    directions_json = get_directions(user_adress, coordinates, travel_mode_str)
+    directions_json = get_directions_json(user_adress, coordinates, travel_mode_str)
     
     display_directions(directions_json)
 

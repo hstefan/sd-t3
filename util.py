@@ -1,6 +1,7 @@
 from urllib.request import urlopen
 import json
 import sys
+import re
 
 def response_to_json(url, enc='utf-8'):
     """Connects to the URL in url and returns the response parsed as json.
@@ -29,3 +30,11 @@ def list_tweets_with_location(tweets_json):
             with_location.append((tweet['text'], coordinates))
     return with_location
     
+def get_directions_list(directions_json):
+    dir_info = {}
+    route = directions_json['routes'][0]
+    steps = route['legs'][0]['steps']
+    l = []
+    for step in steps:
+        l.append(re.sub('<[^<]+?>', '', step['html_instructions']))
+    return l
