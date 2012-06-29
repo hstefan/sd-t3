@@ -6,8 +6,11 @@ def setup_arguments():
     parser = ArgumentParser(description='Provides you with an automated stalking tool!')
     parser.add_argument('-u', '--user', dest='user', metavar='USER', type=str, required=True,
         help='The stalking target user!')
-    parser.add_argument('-n', '--num_tweets', dest='num_tweets', metavar='NUM_TWEETS', type=int, required=True,
-        help='Number of tweets to retrieve')
+    parser.add_argument('-n', '--num_tweets', dest='num_tweets', metavar='NUM_TWEETS', type=int,
+        help='Number of tweets to retrieve', default=10)
+    parser.add_argument('-t', '--travel_mode', dest='travel_mode', metavar='TRAVEL_MODE', type=int,
+        help='Travel modes (1 - driving, 2 - walking, 3 - bicycling(if you need silence and speed), 4 - transit (public transit routes)',
+        default=1)
     return parser
 
 def display_tweets(tweets_json):
