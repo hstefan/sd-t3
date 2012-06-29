@@ -14,6 +14,9 @@ def tweet_has_location(tweet):
     return geo_enabled and coordinates
 
 def get_directions_list(directions_json):
+    if len(directions_json['routes']) < 1:
+        return None
+
     dir_info = {}
     route = directions_json['routes'][0]
     steps = route['legs'][0]['steps']
