@@ -1,6 +1,6 @@
 from PyQt4 import QtCore, QtGui
 from app_gui import Ui_MainWindow
-from util import tweet_has_location, list_tweets_with_location, get_directions_list
+from util import tweet_has_location, get_directions_list
 from twitter_api_wrapper import TwitterError, get_twitter_id, get_tweets
 from directions_api_wrapper import get_directions_json
 
