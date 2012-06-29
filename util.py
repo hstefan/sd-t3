@@ -2,6 +2,11 @@ from urllib.request import urlopen, HTTPError
 import json
 
 def response_to_json(url, enc='utf-8'):
+    """Connects to the URL in url and returns the response parsed as json. If
+    the request results in a 404 'Not Found' error then None is returned.
+
+    This is useful for retrieving data from RESTful services."""
+
     try:
         response = urlopen(url)
     except HTTPError as e:
